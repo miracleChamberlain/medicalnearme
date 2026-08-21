@@ -1,0 +1,7278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Medical Near Me — Admin Dashboard</title>
+
+  <!-- Part 2 CSS will be placed here -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       ADMIN APPLICATION
+  ========================== -->
+  <div id="adminApp">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar-header">
+
+        <div class="brand-logo">
+          MN
+        </div>
+
+        <div class="brand-text">
+          <h2>Medical Near Me</h2>
+          <span>Admin Dashboard</span>
+        </div>
+
+        <button
+          type="button"
+          class="sidebar-close"
+          id="sidebarClose"
+          aria-label="Close sidebar"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <nav class="sidebar-nav">
+
+        <!-- Dashboard -->
+        <button
+          type="button"
+          class="nav-item active"
+          data-page="dashboard"
+        >
+          <span class="nav-icon">⌂</span>
+          <span class="nav-label">Dashboard</span>
+        </button>
+
+
+        <div class="nav-section-title">
+          MEDICAL SERVICES
+        </div>
+
+
+        <!-- Hospitals -->
+        <button
+          type="button"
+          class="nav-item"
+          data-page="hospitals"
+        >
+          <span class="nav-icon">🏥</span>
+          <span class="nav-label">Hospitals</span>
+        </button>
+
+
+        <!-- Consultants -->
+        <button
+          type="button"
+          class="nav-item"
+          data-page="consultants"
+        >
+          <span class="nav-icon">👨‍⚕️</span>
+          <span class="nav-label">Consultants</span>
+        </button>
+
+
+        <!-- Home Treatment -->
+        <button
+          type="button"
+          class="nav-item"
+          data-page="homeTreatment"
+        >
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">Home Treatment</span>
+        </button>
+
+
+        <!-- Ambulances -->
+        <button
+          type="button"
+          class="nav-item"
+          data-page="ambulances"
+        >
+          <span class="nav-icon">🚑</span>
+          <span class="nav-label">Ambulance Services</span>
+        </button>
+
+
+        <!-- Medical Supplies -->
+        <button
+          type="button"
+          class="nav-item"
+          data-page="medicalSupplies"
+        >
+          <span class="nav-icon">🩺</span>
+          <span class="nav-label">Medical Supplies</span>
+        </button>
+
+      </nav>
+
+
+      <div class="sidebar-footer">
+
+        <div class="admin-status">
+          <span class="status-dot"></span>
+
+          <div>
+            <strong>Admin Mode</strong>
+            <small>Database management</small>
+          </div>
+        </div>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =========================
+         SIDEBAR OVERLAY
+    ========================== -->
+    <div
+      class="sidebar-overlay"
+      id="sidebarOverlay"
+    ></div>
+
+
+    <!-- =========================
+         MAIN AREA
+    ========================== -->
+    <div class="main-area">
+
+      <!-- =========================
+           TOP BAR
+      ========================== -->
+      <header class="topbar">
+
+        <div class="topbar-left">
+
+          <button
+            type="button"
+            class="menu-button"
+            id="sidebarOpen"
+            aria-label="Open sidebar"
+          >
+            ☰
+          </button>
+
+          <div class="page-heading">
+            <span class="page-heading-small">
+              Medical Near Me
+            </span>
+
+            <h1 id="pageTitle">
+              Dashboard
+            </h1>
+          </div>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+          <!-- Firebase connection status -->
+          <div
+            class="connection-status checking"
+            id="connectionStatus"
+          >
+            <span
+              class="connection-dot"
+              id="connectionDot"
+            ></span>
+
+            <span id="connectionText">
+              Checking connection...
+            </span>
+          </div>
+
+
+          <div class="admin-profile">
+
+            <div class="admin-avatar">
+              A
+            </div>
+
+            <div class="admin-profile-text">
+              <strong>Administrator</strong>
+              <span>Admin</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <!-- =========================
+           PAGE CONTENT
+      ========================== -->
+      <main class="main-content" id="mainContent">
+
+
+        <!-- =========================
+             DASHBOARD PAGE
+        ========================== -->
+        <section
+          class="page-section active"
+          id="page-dashboard"
+          data-section="dashboard"
+        >
+
+          <div class="welcome-card">
+
+            <div class="welcome-content">
+
+              <span class="welcome-label">
+                ADMIN CONTROL CENTER
+              </span>
+
+              <h2>
+                Welcome to Medical Near Me
+              </h2>
+
+              <p>
+                Manage hospitals, consultants, home treatment,
+                ambulance services and medical supplies from one
+                central dashboard.
+              </p>
+
+            </div>
+
+
+            <div class="welcome-icon">
+              +
+            </div>
+
+          </div>
+
+
+          <!-- Statistics -->
+          <div class="stats-grid">
+
+
+            <button
+              type="button"
+              class="stat-card"
+              data-page-link="hospitals"
+            >
+
+              <div class="stat-card-top">
+                <span class="stat-icon hospital-icon">
+                  🏥
+                </span>
+
+                <span class="stat-arrow">
+                  →
+                </span>
+              </div>
+
+              <strong id="hospitalCount">
+                0
+              </strong>
+
+              <span>
+                Hospitals
+              </span>
+
+            </button>
+
+
+            <button
+              type="button"
+              class="stat-card"
+              data-page-link="consultants"
+            >
+
+              <div class="stat-card-top">
+                <span class="stat-icon consultant-icon">
+                  👨‍⚕️
+                </span>
+
+                <span class="stat-arrow">
+                  →
+                </span>
+              </div>
+
+              <strong id="consultantCount">
+                0
+              </strong>
+
+              <span>
+                Consultants
+              </span>
+
+            </button>
+
+
+            <button
+              type="button"
+              class="stat-card"
+              data-page-link="homeTreatment"
+            >
+
+              <div class="stat-card-top">
+                <span class="stat-icon home-icon">
+                  🏠
+                </span>
+
+                <span class="stat-arrow">
+                  →
+                </span>
+              </div>
+
+              <strong id="homeTreatmentCount">
+                0
+              </strong>
+
+              <span>
+                Home Treatment
+              </span>
+
+            </button>
+
+
+            <button
+              type="button"
+              class="stat-card"
+              data-page-link="ambulances"
+            >
+
+              <div class="stat-card-top">
+                <span class="stat-icon ambulance-icon">
+                  🚑
+                </span>
+
+                <span class="stat-arrow">
+                  →
+                </span>
+              </div>
+
+              <strong id="ambulanceCount">
+                0
+              </strong>
+
+              <span>
+                Ambulance Services
+              </span>
+
+            </button>
+
+
+            <button
+              type="button"
+              class="stat-card"
+              data-page-link="medicalSupplies"
+            >
+
+              <div class="stat-card-top">
+                <span class="stat-icon supply-icon">
+                  🩺
+                </span>
+
+                <span class="stat-arrow">
+                  →
+                </span>
+              </div>
+
+              <strong id="medicalSupplyCount">
+                0
+              </strong>
+
+              <span>
+                Medical Supplies
+              </span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Quick actions -->
+          <div class="dashboard-grid">
+
+            <div class="dashboard-panel">
+
+              <div class="panel-header">
+
+                <div>
+                  <span class="panel-label">
+                    QUICK ACTIONS
+                  </span>
+
+                  <h3>
+                    Manage Medical Services
+                  </h3>
+                </div>
+
+              </div>
+
+
+              <div class="quick-actions">
+
+
+                <button
+                  type="button"
+                  class="quick-action"
+                  data-action="add"
+                  data-page-target="hospitals"
+                >
+                  <span>🏥</span>
+
+                  <div>
+                    <strong>Add Hospital</strong>
+                    <small>
+                      Add a hospital record
+                    </small>
+                  </div>
+
+                  <b>+</b>
+                </button>
+
+
+                <button
+                  type="button"
+                  class="quick-action"
+                  data-action="add"
+                  data-page-target="consultants"
+                >
+                  <span>👨‍⚕️</span>
+
+                  <div>
+                    <strong>Add Consultant</strong>
+                    <small>
+                      Add a consultant record
+                    </small>
+                  </div>
+
+                  <b>+</b>
+                </button>
+
+
+                <button
+                  type="button"
+                  class="quick-action"
+                  data-action="add"
+                  data-page-target="homeTreatment"
+                >
+                  <span>🏠</span>
+
+                  <div>
+                    <strong>Add Home Treatment</strong>
+                    <small>
+                      Add a home treatment provider
+                    </small>
+                  </div>
+
+                  <b>+</b>
+                </button>
+
+
+                <button
+                  type="button"
+                  class="quick-action"
+                  data-action="add"
+                  data-page-target="ambulances"
+                >
+                  <span>🚑</span>
+
+                  <div>
+                    <strong>Add Ambulance</strong>
+                    <small>
+                      Add an ambulance service
+                    </small>
+                  </div>
+
+                  <b>+</b>
+                </button>
+
+
+                <button
+                  type="button"
+                  class="quick-action"
+                  data-action="add"
+                  data-page-target="medicalSupplies"
+                >
+                  <span>🩺</span>
+
+                  <div>
+                    <strong>Add Medical Supply</strong>
+                    <small>
+                      Add a medical supplier
+                    </small>
+                  </div>
+
+                  <b>+</b>
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <div class="dashboard-panel">
+
+              <div class="panel-header">
+
+                <div>
+                  <span class="panel-label">
+                    SYSTEM
+                  </span>
+
+                  <h3>
+                    Database Status
+                  </h3>
+                </div>
+
+              </div>
+
+
+              <div class="database-status-card">
+
+                <div
+                  class="database-status-icon"
+                  id="databaseStatusIcon"
+                >
+                  ●
+                </div>
+
+                <div>
+
+                  <strong id="databaseStatusTitle">
+                    Checking database...
+                  </strong>
+
+                  <p id="databaseStatusMessage">
+                    Waiting for Firebase connection.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             HOSPITALS PAGE
+        ========================== -->
+        <section
+          class="page-section"
+          id="page-hospitals"
+          data-section="hospitals"
+        >
+
+          <div class="section-header">
+
+            <div>
+              <span class="section-label">
+                MEDICAL FACILITIES
+              </span>
+
+              <h2>
+                Hospitals
+              </h2>
+
+              <p>
+                Manage all hospital records.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="primary-button"
+              data-add-button="hospitals"
+            >
+              + Add Hospital
+            </button>
+
+          </div>
+
+
+          <div class="management-panel">
+
+            <div class="toolbar">
+
+              <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                  type="search"
+                  id="hospitalSearch"
+                  placeholder="Search hospitals..."
+                >
+
+              </div>
+
+              <div
+                class="record-total"
+                id="hospitalTotal"
+              >
+                0 records
+              </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+              <table class="data-table">
+
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Phone</th>
+                    <th>Services</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody id="hospitalTableBody">
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             CONSULTANTS PAGE
+        ========================== -->
+        <section
+          class="page-section"
+          id="page-consultants"
+          data-section="consultants"
+        >
+
+          <div class="section-header">
+
+            <div>
+              <span class="section-label">
+                MEDICAL PROFESSIONALS
+              </span>
+
+              <h2>
+                Consultants
+              </h2>
+
+              <p>
+                Manage consultant records and specializations.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="primary-button"
+              data-add-button="consultants"
+            >
+              + Add Consultant
+            </button>
+
+          </div>
+
+
+          <div class="management-panel">
+
+            <div class="toolbar">
+
+              <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                  type="search"
+                  id="consultantSearch"
+                  placeholder="Search consultants..."
+                >
+
+              </div>
+
+              <div
+                class="record-total"
+                id="consultantTotal"
+              >
+                0 records
+              </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+              <table class="data-table">
+
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Location</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody id="consultantTableBody">
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             HOME TREATMENT PAGE
+        ========================== -->
+        <section
+          class="page-section"
+          id="page-homeTreatment"
+          data-section="homeTreatment"
+        >
+
+          <div class="section-header">
+
+            <div>
+              <span class="section-label">
+                CARE AT HOME
+              </span>
+
+              <h2>
+                Home Treatment
+              </h2>
+
+              <p>
+                Manage home treatment and home care providers.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="primary-button"
+              data-add-button="homeTreatment"
+            >
+              + Add Home Treatment
+            </button>
+
+          </div>
+
+
+          <div class="management-panel">
+
+            <div class="toolbar">
+
+              <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                  type="search"
+                  id="homeTreatmentSearch"
+                  placeholder="Search home treatment..."
+                >
+
+              </div>
+
+              <div
+                class="record-total"
+                id="homeTreatmentTotal"
+              >
+                0 records
+              </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+              <table class="data-table">
+
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Provider Type</th>
+                    <th>Location</th>
+                    <th>Services</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody id="homeTreatmentTableBody">
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             AMBULANCE PAGE
+        ========================== -->
+        <section
+          class="page-section"
+          id="page-ambulances"
+          data-section="ambulances"
+        >
+
+          <div class="section-header">
+
+            <div>
+              <span class="section-label">
+                EMERGENCY TRANSPORT
+              </span>
+
+              <h2>
+                Ambulance Services
+              </h2>
+
+              <p>
+                Manage ambulance service providers.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="primary-button"
+              data-add-button="ambulances"
+            >
+              + Add Ambulance
+            </button>
+
+          </div>
+
+
+          <div class="management-panel">
+
+            <div class="toolbar">
+
+              <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                  type="search"
+                  id="ambulanceSearch"
+                  placeholder="Search ambulance services..."
+                >
+
+              </div>
+
+              <div
+                class="record-total"
+                id="ambulanceTotal"
+              >
+                0 records
+              </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+              <table class="data-table">
+
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Service Type</th>
+                    <th>Location</th>
+                    <th>24 Hours</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody id="ambulanceTableBody">
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             MEDICAL SUPPLIES PAGE
+        ========================== -->
+        <section
+          class="page-section"
+          id="page-medicalSupplies"
+          data-section="medicalSupplies"
+        >
+
+          <div class="section-header">
+
+            <div>
+              <span class="section-label">
+                MEDICAL SUPPLY STORE
+              </span>
+
+              <h2>
+                Medical Supplies
+              </h2>
+
+              <p>
+                Manage suppliers, products and medical equipment.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="primary-button"
+              data-add-button="medicalSupplies"
+            >
+              + Add Medical Supply
+            </button>
+
+          </div>
+
+
+          <div class="management-panel">
+
+            <div class="toolbar">
+
+              <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                  type="search"
+                  id="medicalSupplySearch"
+                  placeholder="Search medical supplies..."
+                >
+
+              </div>
+
+              <div
+                class="record-total"
+                id="medicalSupplyTotal"
+              >
+                0 records
+              </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+              <table class="data-table">
+
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Supplier Type</th>
+                    <th>Location</th>
+                    <th>Products</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody id="medicalSupplyTableBody">
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       RECORD MODAL
+  ========================== -->
+  <div
+    class="modal-overlay"
+    id="recordModal"
+    aria-hidden="true"
+  >
+
+    <div
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+    >
+
+      <div class="modal-header">
+
+        <div>
+          <span
+            class="modal-label"
+            id="modalLabel"
+          >
+            RECORD
+          </span>
+
+          <h2 id="modalTitle">
+            Add Record
+          </h2>
+        </div>
+
+        <button
+          type="button"
+          class="modal-close"
+          id="modalClose"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="recordForm">
+
+        <div
+          class="form-grid"
+          id="formFields"
+        >
+          <!-- JavaScript generates the fields here -->
+        </div>
+
+
+        <div
+          class="form-message"
+          id="formMessage"
+        ></div>
+
+
+        <div class="modal-footer">
+
+          <button
+            type="button"
+            class="secondary-button"
+            id="modalCancel"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="primary-button"
+            id="saveRecordButton"
+          >
+            Save Record
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       DELETE CONFIRMATION
+  ========================== -->
+  <div
+    class="modal-overlay"
+    id="deleteModal"
+    aria-hidden="true"
+  >
+
+    <div class="confirm-modal">
+
+      <div class="confirm-icon">
+        !
+      </div>
+
+      <h2>
+        Delete Record?
+      </h2>
+
+      <p>
+        This action will permanently remove this record
+        from the database.
+      </p>
+
+      <div class="confirm-actions">
+
+        <button
+          type="button"
+          class="secondary-button"
+          id="deleteCancel"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          class="danger-button"
+          id="deleteConfirm"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       TOAST MESSAGE
+  ========================== -->
+  <div
+    class="toast"
+    id="toast"
+    aria-live="polite"
+  >
+
+    <span
+      class="toast-icon"
+      id="toastIcon"
+    >
+      ✓
+    </span>
+
+    <div>
+      <strong id="toastTitle">
+        Success
+      </strong>
+
+      <p id="toastMessage">
+      </p>
+    </div>
+
+  </div>
+<style>/* =========================================================
+   MEDICAL NEAR ME — ADMIN DASHBOARD
+   PART 2 — CSS
+   Matches Part 1 HTML exactly
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: #f4f8f7;
+  color: #163936;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   MAIN APPLICATION
+========================================================= */
+
+#adminApp {
+  min-height: 100vh;
+  background: #f4f8f7;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  width: 276px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #073b38 0%,
+      #062f2d 55%,
+      #052725 100%
+    );
+
+  color: #d8eae7;
+
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+
+  border-right: 1px solid rgba(255,255,255,.06);
+
+  transition:
+    transform .28s ease,
+    box-shadow .28s ease;
+}
+
+
+/* =========================================================
+   SIDEBAR HEADER
+========================================================= */
+
+.sidebar-header {
+  min-height: 86px;
+
+  padding: 18px 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.brand-logo {
+  width: 45px;
+  height: 45px;
+
+  flex: 0 0 45px;
+
+  border-radius: 14px;
+
+  display: grid;
+  place-items: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1bb39f,
+      #08766d
+    );
+
+  color: #fff;
+
+  font-size: 15px;
+  font-weight: 900;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.18);
+}
+
+.brand-text {
+  min-width: 0;
+}
+
+.brand-text h2 {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.25;
+
+  white-space: nowrap;
+}
+
+.brand-text span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #83aaa6;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   SIDEBAR CLOSE
+========================================================= */
+
+.sidebar-close {
+  display: none;
+
+  margin-left: auto;
+
+  width: 34px;
+  height: 34px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: rgba(255,255,255,.08);
+  color: #fff;
+
+  font-size: 22px;
+  line-height: 1;
+
+  transition: .2s ease;
+}
+
+.sidebar-close:hover {
+  background: rgba(255,255,255,.15);
+}
+
+
+/* =========================================================
+   SIDEBAR NAVIGATION
+========================================================= */
+
+.sidebar-nav {
+  flex: 1;
+
+  padding: 18px 12px;
+
+  overflow-y: auto;
+}
+
+.nav-section-title {
+  margin: 20px 10px 8px;
+
+  color: #6f9c98;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .15em;
+}
+
+
+/* =========================================================
+   NAV ITEM
+========================================================= */
+
+.nav-item {
+  width: 100%;
+
+  min-height: 45px;
+
+  margin: 3px 0;
+
+  padding: 10px 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  border: 0;
+  border-radius: 11px;
+
+  background: transparent;
+
+  color: #bdd5d2;
+
+  text-align: left;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,.07);
+  color: #fff;
+}
+
+.nav-item.active {
+  background:
+    linear-gradient(
+      90deg,
+      #0e756b,
+      #0b615a
+    );
+
+  color: #fff;
+
+  box-shadow:
+    0 7px 18px rgba(0,0,0,.14);
+}
+
+.nav-icon {
+  width: 23px;
+
+  flex: 0 0 23px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 17px;
+}
+
+.nav-label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+========================================================= */
+
+.sidebar-footer {
+  padding: 14px;
+
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+.admin-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 11px;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.055);
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+
+  flex: 0 0 9px;
+
+  border-radius: 50%;
+
+  background: #28c77a;
+
+  box-shadow:
+    0 0 0 4px rgba(40,199,122,.12);
+}
+
+.admin-status strong {
+  display: block;
+
+  color: #fff;
+
+  font-size: 11px;
+}
+
+.admin-status small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #80a39f;
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   SIDEBAR OVERLAY
+========================================================= */
+
+.sidebar-overlay {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 90;
+
+  background: rgba(2,24,23,.55);
+
+  backdrop-filter: blur(2px);
+}
+
+
+/* =========================================================
+   MAIN AREA
+========================================================= */
+
+.main-area {
+  min-height: 100vh;
+
+  margin-left: 276px;
+
+  background: #f4f8f7;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+  height: 74px;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+
+  background: rgba(255,255,255,.94);
+
+  border-bottom: 1px solid #e2ece9;
+
+  backdrop-filter: blur(14px);
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.topbar-left {
+  gap: 15px;
+}
+
+.topbar-right {
+  gap: 17px;
+}
+
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+.menu-button {
+  display: none;
+
+  width: 39px;
+  height: 39px;
+
+  border: 1px solid #dce8e5;
+  border-radius: 10px;
+
+  background: #f5f9f8;
+  color: #174e49;
+
+  font-size: 19px;
+}
+
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
+
+.page-heading-small {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: #7b8d8a;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+.page-heading h1 {
+  color: #173d39;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   CONNECTION STATUS
+========================================================= */
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-height: 31px;
+
+  padding: 7px 11px;
+
+  border: 1px solid #dce8e5;
+  border-radius: 999px;
+
+  background: #f7faf9;
+
+  color: #657773;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  transition: .2s ease;
+}
+
+.connection-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #aebbb8;
+}
+
+
+/* Checking */
+
+.connection-status.checking {
+  background: #fff9e9;
+  border-color: #f1dfad;
+  color: #956b09;
+}
+
+.connection-status.checking .connection-dot {
+  background: #eab308;
+
+  animation: pulseConnection 1.3s infinite;
+}
+
+
+/* Connected */
+
+.connection-status.connected {
+  background: #eaf8f3;
+  border-color: #cbece2;
+  color: #087366;
+}
+
+.connection-status.connected .connection-dot {
+  background: #16a34a;
+
+  box-shadow:
+    0 0 0 4px rgba(22,163,74,.10);
+}
+
+
+/* Offline / Error */
+
+.connection-status.offline,
+.connection-status.error {
+  background: #fff0ee;
+  border-color: #ffd4d0;
+  color: #b42318;
+}
+
+.connection-status.offline .connection-dot,
+.connection-status.error .connection-dot {
+  background: #dc2626;
+}
+
+
+@keyframes pulseConnection {
+  0% {
+    box-shadow: 0 0 0 0 rgba(234,179,8,.3);
+  }
+
+  70% {
+    box-shadow: 0 0 0 7px rgba(234,179,8,0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(234,179,8,0);
+  }
+}
+
+
+/* =========================================================
+   ADMIN PROFILE
+========================================================= */
+
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.admin-avatar {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #dff5f0,
+      #c7ebe5
+    );
+
+  color: #08766c;
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.admin-profile-text strong {
+  display: block;
+
+  color: #264a46;
+
+  font-size: 11px;
+}
+
+.admin-profile-text span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #80918e;
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+  width: 100%;
+
+  max-width: 1540px;
+
+  margin: 0 auto;
+
+  padding: 28px;
+}
+
+
+/* =========================================================
+   PAGE SECTIONS
+========================================================= */
+
+.page-section {
+  display: none;
+
+  animation: pageIn .25s ease;
+}
+
+.page-section.active {
+  display: block;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   WELCOME CARD
+========================================================= */
+
+.welcome-card {
+  position: relative;
+
+  min-height: 190px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  padding: 30px 34px;
+
+  margin-bottom: 22px;
+
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(42,190,170,.26),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #073d3a,
+      #0a7067
+    );
+
+  color: #fff;
+
+  box-shadow:
+    0 18px 45px rgba(6,62,58,.15);
+}
+
+.welcome-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 230px;
+  height: 230px;
+
+  right: -90px;
+  bottom: -125px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255,255,255,.13);
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 750px;
+}
+
+.welcome-label {
+  color: #8ed4cb;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .16em;
+}
+
+.welcome-content h2 {
+  margin: 7px 0 8px;
+
+  font-size: clamp(24px, 3vw, 34px);
+
+  line-height: 1.1;
+}
+
+.welcome-content p {
+  max-width: 650px;
+
+  color: #c7e4e0;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+.welcome-icon {
+  position: relative;
+  z-index: 2;
+
+  width: 76px;
+  height: 76px;
+
+  flex: 0 0 76px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 22px;
+
+  background: rgba(255,255,255,.09);
+
+  color: #fff;
+
+  font-size: 37px;
+  font-weight: 300;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.stats-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 13px;
+
+  margin-bottom: 22px;
+}
+
+.stat-card {
+  min-height: 145px;
+
+  padding: 17px;
+
+  border: 1px solid #e0ebe8;
+  border-radius: 17px;
+
+  background: #fff;
+
+  color: #183e3a;
+
+  text-align: left;
+
+  box-shadow:
+    0 7px 25px rgba(15,54,49,.045);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #cbe4df;
+
+  box-shadow:
+    0 13px 30px rgba(15,54,49,.09);
+}
+
+.stat-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat-icon {
+  width: 39px;
+  height: 39px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 11px;
+
+  font-size: 18px;
+}
+
+.hospital-icon {
+  background: #e8f5f2;
+}
+
+.consultant-icon {
+  background: #eef1fb;
+}
+
+.home-icon {
+  background: #fff3e8;
+}
+
+.ambulance-icon {
+  background: #fff0ef;
+}
+
+.supply-icon {
+  background: #f1eefb;
+}
+
+.stat-arrow {
+  color: #a0afac;
+
+  font-size: 17px;
+
+  transition: .2s ease;
+}
+
+.stat-card:hover .stat-arrow {
+  color: #08766c;
+
+  transform: translateX(3px);
+}
+
+.stat-card strong {
+  display: block;
+
+  margin-top: 17px;
+
+  color: #143a36;
+
+  font-size: 27px;
+  font-weight: 850;
+}
+
+.stat-card > span:last-child {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #738480;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+
+.dashboard-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.7fr)
+    minmax(300px, 1fr);
+
+  gap: 16px;
+}
+
+.dashboard-panel {
+  padding: 21px;
+
+  border: 1px solid #e1ebe9;
+  border-radius: 18px;
+
+  background: #fff;
+
+  box-shadow:
+    0 7px 25px rgba(15,54,49,.04);
+}
+
+
+/* =========================================================
+   PANEL HEADER
+========================================================= */
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 17px;
+}
+
+.panel-label {
+  color: #0b776c;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .13em;
+}
+
+.panel-header h3 {
+  margin-top: 4px;
+
+  color: #183e3a;
+
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-actions {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.quick-action {
+  min-height: 74px;
+
+  display: grid;
+
+  grid-template-columns: 40px 1fr auto;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 11px;
+
+  border: 1px solid #e3ecea;
+  border-radius: 13px;
+
+  background: #fbfdfc;
+
+  color: #193e3a;
+
+  text-align: left;
+
+  transition: .2s ease;
+}
+
+.quick-action:hover {
+  background: #f2f9f7;
+
+  border-color: #cce5e0;
+
+  transform: translateY(-2px);
+}
+
+.quick-action > span {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 11px;
+
+  background: #eaf6f3;
+
+  font-size: 18px;
+}
+
+.quick-action strong {
+  display: block;
+
+  font-size: 11px;
+}
+
+.quick-action small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #81908e;
+
+  font-size: 9px;
+}
+
+.quick-action > b {
+  color: #0a776b;
+
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   DATABASE STATUS
+========================================================= */
+
+.database-status-card {
+  min-height: 145px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 19px;
+
+  border: 1px solid #e1ebe9;
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fcfb,
+      #f1f8f6
+    );
+}
+
+.database-status-icon {
+  width: 48px;
+  height: 48px;
+
+  flex: 0 0 48px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: #fff4d9;
+
+  color: #d29a00;
+
+  font-size: 21px;
+}
+
+.database-status-card strong {
+  display: block;
+
+  color: #244943;
+
+  font-size: 13px;
+}
+
+.database-status-card p {
+  margin-top: 5px;
+
+  color: #7a8986;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 20px;
+}
+
+.section-label {
+  color: #0a776c;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .15em;
+}
+
+.section-header h2 {
+  margin-top: 5px;
+
+  color: #183e3a;
+
+  font-size: 27px;
+  font-weight: 850;
+}
+
+.section-header p {
+  margin-top: 5px;
+
+  color: #7a8986;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button,
+.secondary-button,
+.danger-button {
+  border: 0;
+
+  border-radius: 10px;
+
+  padding: 11px 15px;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+}
+
+.primary-button {
+  background:
+    linear-gradient(
+      135deg,
+      #0d8175,
+      #08695f
+    );
+
+  color: #fff;
+
+  box-shadow:
+    0 7px 18px rgba(8,105,95,.16);
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 23px rgba(8,105,95,.23);
+}
+
+.secondary-button {
+  background: #edf5f3;
+  color: #22544f;
+}
+
+.secondary-button:hover {
+  background: #e2efec;
+}
+
+.danger-button {
+  background: #fff0ee;
+  color: #b42318;
+}
+
+.danger-button:hover {
+  background: #ffe4e1;
+}
+
+
+/* =========================================================
+   MANAGEMENT PANEL
+========================================================= */
+
+.management-panel {
+  overflow: hidden;
+
+  border: 1px solid #e0ebe8;
+  border-radius: 18px;
+
+  background: #fff;
+
+  box-shadow:
+    0 8px 28px rgba(15,54,49,.045);
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar {
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 14px 17px;
+
+  border-bottom: 1px solid #e5eeec;
+}
+
+.search-box {
+  width: min(390px, 100%);
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 12px;
+
+  border: 1px solid #dce8e5;
+  border-radius: 10px;
+
+  background: #fbfdfc;
+
+  color: #80908d;
+
+  transition: .2s ease;
+}
+
+.search-box:focus-within {
+  border-color: #0c786d;
+
+  box-shadow:
+    0 0 0 3px rgba(12,120,109,.08);
+}
+
+.search-box > span {
+  font-size: 18px;
+}
+
+.search-box input {
+  width: 100%;
+
+  min-height: 40px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #234640;
+
+  font-size: 11px;
+}
+
+.search-box input::placeholder {
+  color: #9aa8a5;
+}
+
+.record-total {
+  color: #788884;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-container {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+
+  min-width: 850px;
+
+  border-collapse: collapse;
+}
+
+.data-table th {
+  padding: 13px 16px;
+
+  background: #f6faf9;
+
+  border-bottom: 1px solid #e1ebe9;
+
+  color: #6b7d79;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  text-align: left;
+  text-transform: uppercase;
+
+  letter-spacing: .06em;
+
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 14px 16px;
+
+  border-bottom: 1px solid #edf2f1;
+
+  color: #36544f;
+
+  font-size: 11px;
+
+  vertical-align: middle;
+}
+
+.data-table tbody tr {
+  transition: background .15s ease;
+}
+
+.data-table tbody tr:hover {
+  background: #f9fcfb;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+
+/* =========================================================
+   TABLE STATUS
+========================================================= */
+
+.table-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.table-status.active {
+  background: #e8f7f2;
+  color: #087568;
+}
+
+.table-status.inactive {
+  background: #fff0ee;
+  color: #b42318;
+}
+
+.table-status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+}
+
+.table-status.active .table-status-dot {
+  background: #16a34a;
+}
+
+.table-status.inactive .table-status-dot {
+  background: #dc2626;
+}
+
+
+/* =========================================================
+   TABLE ACTIONS
+========================================================= */
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.table-action {
+  min-height: 31px;
+
+  padding: 6px 9px;
+
+  border: 1px solid #dce8e5;
+  border-radius: 8px;
+
+  background: #f7faf9;
+
+  color: #31554f;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.table-action:hover {
+  background: #eaf4f1;
+}
+
+.table-action.delete {
+  border-color: #ffd8d4;
+
+  background: #fff4f2;
+
+  color: #b42318;
+}
+
+.table-action.delete:hover {
+  background: #ffe8e4;
+}
+
+
+/* =========================================================
+   EMPTY TABLE
+========================================================= */
+
+.empty-table {
+  padding: 50px 20px !important;
+
+  text-align: center;
+
+  color: #899794 !important;
+}
+
+.empty-table-icon {
+  width: 48px;
+  height: 48px;
+
+  margin: 0 auto 10px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: #eef6f4;
+
+  color: #7a9893;
+
+  font-size: 19px;
+}
+
+.empty-table strong {
+  display: block;
+
+  color: #526d68;
+
+  font-size: 12px;
+}
+
+.empty-table span {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   MODAL OVERLAY
+========================================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 300;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(2,30,28,.62);
+
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.show {
+  display: flex;
+
+  animation: overlayIn .2s ease;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   RECORD MODAL
+========================================================= */
+
+.modal {
+  width: min(720px, 100%);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  border-radius: 20px;
+
+  background: #fff;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.22);
+
+  animation: modalIn .22s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 22px 23px;
+
+  border-bottom: 1px solid #e7efed;
+}
+
+.modal-label {
+  color: #0b776c;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .14em;
+}
+
+.modal-header h2 {
+  margin-top: 5px;
+
+  color: #193e3a;
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
+
+.modal-close {
+  width: 35px;
+  height: 35px;
+
+  flex: 0 0 35px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: #edf5f3;
+
+  color: #31544f;
+
+  font-size: 21px;
+
+  line-height: 1;
+
+  transition: .2s ease;
+}
+
+.modal-close:hover {
+  background: #e1eeeb;
+
+  transform: rotate(3deg);
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+#recordForm {
+  padding: 22px 23px;
+}
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 15px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.form-field.full {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  color: #365650;
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.form-field label span {
+  color: #97a5a2;
+
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  border: 1px solid #dbe7e4;
+  border-radius: 10px;
+
+  background: #fbfdfc;
+
+  color: #234740;
+
+  font-size: 11px;
+
+  transition: .2s ease;
+}
+
+.form-field textarea {
+  min-height: 100px;
+
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: #0b786d;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 3px rgba(11,120,109,.08);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #a2afac;
+}
+
+
+/* =========================================================
+   OPTIONAL FIELD NOTICE
+========================================================= */
+
+.form-optional-note {
+  grid-column: 1 / -1;
+
+  padding: 10px 12px;
+
+  border: 1px solid #dceee9;
+  border-radius: 10px;
+
+  background: #f0f9f6;
+
+  color: #52736d;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   CHECKBOX FIELD
+========================================================= */
+
+.checkbox-field {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 11px 12px;
+
+  border: 1px solid #e1ebe9;
+  border-radius: 10px;
+
+  background: #f9fcfb;
+}
+
+.checkbox-field input {
+  width: 17px;
+  height: 17px;
+
+  accent-color: #0b776c;
+}
+
+.checkbox-field label {
+  color: #385750;
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+========================================================= */
+
+.form-message {
+  display: none;
+
+  margin-top: 15px;
+
+  padding: 11px 13px;
+
+  border-radius: 10px;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1.5;
+}
+
+.form-message.show {
+  display: block;
+}
+
+.form-message.success {
+  background: #eaf8f3;
+
+  border: 1px solid #ccece3;
+
+  color: #087568;
+}
+
+.form-message.error {
+  background: #fff0ee;
+
+  border: 1px solid #ffd5d1;
+
+  color: #b42318;
+}
+
+.form-message.info {
+  background: #eef6fb;
+
+  border: 1px solid #d7e9f4;
+
+  color: #245c78;
+}
+
+
+/* =========================================================
+   MODAL FOOTER
+========================================================= */
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 21px;
+
+  padding-top: 17px;
+
+  border-top: 1px solid #e8efed;
+}
+
+
+/* =========================================================
+   CONFIRM DELETE MODAL
+========================================================= */
+
+.confirm-modal {
+  width: min(390px, 100%);
+
+  padding: 28px;
+
+  border-radius: 20px;
+
+  background: #fff;
+
+  text-align: center;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.22);
+
+  animation: modalIn .22s ease;
+}
+
+.confirm-icon {
+  width: 52px;
+  height: 52px;
+
+  margin: 0 auto 15px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 16px;
+
+  background: #fff0ee;
+
+  color: #c52c21;
+
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.confirm-modal h2 {
+  color: #243f3b;
+
+  font-size: 19px;
+}
+
+.confirm-modal p {
+  margin-top: 7px;
+
+  color: #7d8b88;
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 21px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+  position: fixed;
+
+  right: 22px;
+  bottom: 22px;
+
+  z-index: 500;
+
+  width: min(370px, calc(100vw - 30px));
+
+  display: none;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 13px 15px;
+
+  border: 1px solid #dce9e6;
+  border-radius: 13px;
+
+  background: #fff;
+
+  box-shadow:
+    0 18px 50px rgba(11,52,48,.17);
+}
+
+.toast.show {
+  display: flex;
+
+  animation:
+    toastIn .25s ease;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast-icon {
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  background: #eaf8f3;
+
+  color: #087568;
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.toast strong {
+  display: block;
+
+  color: #264a45;
+
+  font-size: 11px;
+}
+
+.toast p {
+  margin-top: 2px;
+
+  color: #7c8c88;
+
+  font-size: 10px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.sidebar-nav::-webkit-scrollbar,
+.table-container::-webkit-scrollbar,
+.modal::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track,
+.table-container::-webkit-scrollbar-track,
+.modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb,
+.table-container::-webkit-scrollbar-thumb,
+.modal::-webkit-scrollbar-thumb {
+  background: #c8d8d5;
+
+  border-radius: 999px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover,
+.table-container::-webkit-scrollbar-thumb:hover,
+.modal::-webkit-scrollbar-thumb:hover {
+  background: #a9bfba;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .sidebar {
+    width: 250px;
+  }
+
+  .main-area {
+    margin-left: 250px;
+  }
+
+  .stats-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE SIDEBAR
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .sidebar {
+    transform: translateX(-100%);
+
+    box-shadow:
+      20px 0 60px rgba(0,0,0,.18);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-close {
+    display: block;
+  }
+
+  .sidebar-overlay.show {
+    display: block;
+  }
+
+  .main-area {
+    margin-left: 0;
+  }
+
+  .menu-button {
+    display: grid;
+    place-items: center;
+  }
+
+  .topbar {
+    padding: 0 18px;
+  }
+
+  .main-content {
+    padding: 21px;
+  }
+
+  .admin-profile-text {
+    display: none;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — SMALL TABLET
+========================================================= */
+
+@media (max-width: 720px) {
+
+  .topbar {
+    height: 66px;
+  }
+
+  .topbar-right {
+    gap: 8px;
+  }
+
+  .connection-status {
+    padding: 6px 8px;
+  }
+
+  .connection-status span:last-child {
+    display: none;
+  }
+
+  .welcome-card {
+    min-height: auto;
+
+    padding: 24px;
+  }
+
+  .welcome-icon {
+    display: none;
+  }
+
+  .stats-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field.full {
+    grid-column: auto;
+  }
+
+  .form-optional-note {
+    grid-column: auto;
+  }
+
+  .checkbox-field {
+    grid-column: auto;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — PHONE
+========================================================= */
+
+@media (max-width: 520px) {
+
+  .topbar {
+    padding: 0 13px;
+  }
+
+  .page-heading-small {
+    display: none;
+  }
+
+  .page-heading h1 {
+    font-size: 16px;
+  }
+
+  .admin-avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .welcome-card {
+    padding: 21px;
+
+    border-radius: 17px;
+  }
+
+  .welcome-content h2 {
+    font-size: 22px;
+  }
+
+  .welcome-content p {
+    font-size: 11px;
+  }
+
+  .stats-grid {
+    gap: 9px;
+  }
+
+  .stat-card {
+    min-height: 130px;
+
+    padding: 13px;
+  }
+
+  .stat-card strong {
+    font-size: 23px;
+  }
+
+  .dashboard-panel {
+    padding: 16px;
+  }
+
+  .section-header h2 {
+    font-size: 23px;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .danger-button {
+    width: 100%;
+  }
+
+  .section-header > .primary-button {
+    width: 100%;
+  }
+
+  .toolbar {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .record-total {
+    align-self: flex-start;
+  }
+
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .modal {
+    max-height: 94vh;
+
+    border-radius: 16px;
+  }
+
+  .modal-header,
+  #recordForm {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .modal-footer button {
+    width: 100%;
+  }
+
+  .confirm-modal {
+    padding: 23px 18px;
+  }
+
+  .confirm-actions {
+    flex-direction: column-reverse;
+  }
+
+  .confirm-actions button {
+    width: 100%;
+  }
+
+  .toast {
+    right: 15px;
+    bottom: 15px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .connection-status {
+    display: none;
+  }
+
+}
+</style>
+
+
+  <!-- Part 3 JavaScript will be loaded here -->
+Medical Near Me — Complete Admin JavaScript
+
+<script type="module">
+
+/* =========================================================
+   MEDICAL NEAR ME — ADMIN DASHBOARD
+   COMPLETE JAVASCRIPT
+
+   IMPORTANT:
+   - Sidebar logic preserved
+   - Firebase structure preserved
+   - All existing services preserved
+   - Medical Supplies now supports:
+       1. Fixed Price
+       2. Negotiable
+   - Products remain stored as an array
+   - No changes to sidebar HTML required
+========================================================= */
+
+
+/* =========================================================
+   FIREBASE IMPORTS
+========================================================= */
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  push,
+  set,
+  update,
+  remove,
+  onValue
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyAGOo0-5mM4c4m_5GeU9p0vp5_HYPsbhaY",
+
+  authDomain:
+    "medical-near-me.firebaseapp.com",
+
+  databaseURL:
+    "https://medical-near-me-default-rtdb.firebaseio.com",
+
+  projectId:
+    "medical-near-me",
+
+  storageBucket:
+    "medical-near-me.firebasestorage.app",
+
+  messagingSenderId:
+    "525783029587",
+
+  appId:
+    "1:525783029587:web:e7d2fca8ed0f2b496bb3a6",
+
+  measurementId:
+    "G-FQYKJTD11F"
+
+};
+
+
+/* =========================================================
+   INITIALIZE FIREBASE
+========================================================= */
+
+let firebaseApp = null;
+let database = null;
+
+try {
+
+  firebaseApp =
+    initializeApp(firebaseConfig);
+
+  database =
+    getDatabase(firebaseApp);
+
+} catch (error) {
+
+  console.error(
+    "Firebase initialization error:",
+    error
+  );
+
+}
+
+
+/* =========================================================
+   SERVICE CONFIGURATION
+========================================================= */
+
+const SERVICE_CONFIG = {
+
+  /* =======================================================
+     HOSPITALS
+  ======================================================= */
+
+  hospitals: {
+
+    title: "Hospitals",
+    singular: "Hospital",
+    label: "MEDICAL FACILITIES",
+    databasePath: "hospitals",
+
+    fields: [
+
+      {
+        name: "name",
+        label: "Name",
+        type: "text",
+        placeholder: "Hospital name"
+      },
+
+      {
+        name: "type",
+        label: "Type",
+        type: "text",
+        placeholder: "Hospital type"
+      },
+
+      {
+        name: "country",
+        label: "Country",
+        type: "text",
+        placeholder: "Country"
+      },
+
+      {
+        name: "state",
+        label: "State",
+        type: "text",
+        placeholder: "State"
+      },
+
+      {
+        name: "localGovernment",
+        label: "Local Government",
+        type: "text",
+        placeholder: "Local Government"
+      },
+
+      {
+        name: "address",
+        label: "Address",
+        type: "text",
+        placeholder: "Full hospital address"
+      },
+
+      {
+        name: "phone",
+        label: "Phone",
+        type: "tel",
+        placeholder: "Phone number"
+      },
+
+      {
+        name: "whatsapp",
+        label: "WhatsApp",
+        type: "tel",
+        placeholder: "WhatsApp number"
+      },
+
+      {
+        name: "services",
+        label: "Services",
+        type: "textarea",
+        placeholder: "Enter services separated by commas",
+        full: true
+      },
+
+      {
+        name: "verified",
+        label: "Verified",
+        type: "checkbox"
+      },
+
+      {
+        name: "active",
+        label: "Active",
+        type: "checkbox",
+        defaultValue: true
+      }
+
+    ]
+
+  },
+
+
+  /* =======================================================
+     CONSULTANTS
+  ======================================================= */
+
+  consultants: {
+
+    title: "Consultants",
+    singular: "Consultant",
+    label: "MEDICAL PROFESSIONALS",
+    databasePath: "consultants",
+
+    fields: [
+
+      {
+        name: "name",
+        label: "Name",
+        type: "text",
+        placeholder: "Consultant name"
+      },
+
+      {
+        name: "specialization",
+        label: "Specialization",
+        type: "text",
+        placeholder: "Specialization"
+      },
+
+      {
+        name: "country",
+        label: "Country",
+        type: "text",
+        placeholder: "Country"
+      },
+
+      {
+        name: "state",
+        label: "State",
+        type: "text",
+        placeholder: "State"
+      },
+
+      {
+        name: "localGovernment",
+        label: "Local Government",
+        type: "text",
+        placeholder: "Local Government"
+      },
+
+      {
+        name: "address",
+        label: "Address",
+        type: "text",
+        placeholder: "Consultant address"
+      },
+
+      {
+        name: "phone",
+        label: "Phone",
+        type: "tel",
+        placeholder: "Phone number"
+      },
+
+      {
+        name: "whatsapp",
+        label: "WhatsApp",
+        type: "tel",
+        placeholder: "WhatsApp number"
+      },
+
+      {
+        name: "verified",
+        label: "Verified",
+        type: "checkbox"
+      },
+
+      {
+        name: "active",
+        label: "Active",
+        type: "checkbox",
+        defaultValue: true
+      }
+
+    ]
+
+  },
+
+
+  /* =======================================================
+     HOME TREATMENT
+  ======================================================= */
+
+  homeTreatment: {
+
+    title: "Home Treatment",
+    singular: "Home Treatment",
+    label: "CARE AT HOME",
+    databasePath: "homeTreatment",
+
+    fields: [
+
+      {
+        name: "name",
+        label: "Name",
+        type: "text",
+        placeholder: "Provider name"
+      },
+
+      {
+        name: "providerType",
+        label: "Provider Type",
+        type: "text",
+        placeholder: "Provider type"
+      },
+
+      {
+        name: "specialization",
+        label: "Specialization",
+        type: "text",
+        placeholder: "Specialization"
+      },
+
+      {
+        name: "country",
+        label: "Country",
+        type: "text",
+        placeholder: "Country"
+      },
+
+      {
+        name: "state",
+        label: "State",
+        type: "text",
+        placeholder: "State"
+      },
+
+      {
+        name: "localGovernment",
+        label: "Local Government",
+        type: "text",
+        placeholder: "Local Government"
+      },
+
+      {
+        name: "address",
+        label: "Address",
+        type: "text",
+        placeholder: "Home treatment provider address"
+      },
+
+      {
+        name: "phone",
+        label: "Phone",
+        type: "tel",
+        placeholder: "Phone number"
+      },
+
+      {
+        name: "whatsapp",
+        label: "WhatsApp",
+        type: "tel",
+        placeholder: "WhatsApp number"
+      },
+
+      {
+        name: "services",
+        label: "Services",
+        type: "textarea",
+        placeholder: "Enter services separated by commas",
+        full: true
+      },
+
+      {
+        name: "verified",
+        label: "Verified",
+        type: "checkbox"
+      },
+
+      {
+        name: "active",
+        label: "Active",
+        type: "checkbox",
+        defaultValue: true
+      }
+
+    ]
+
+  },
+
+
+  /* =======================================================
+     AMBULANCES
+  ======================================================= */
+
+  ambulances: {
+
+    title: "Ambulance Services",
+    singular: "Ambulance",
+    label: "EMERGENCY TRANSPORT",
+    databasePath: "ambulances",
+
+    fields: [
+
+      {
+        name: "name",
+        label: "Name",
+        type: "text",
+        placeholder: "Ambulance service name"
+      },
+
+      {
+        name: "serviceType",
+        label: "Service Type",
+        type: "text",
+        placeholder: "Service type"
+      },
+
+      {
+        name: "country",
+        label: "Country",
+        type: "text",
+        placeholder: "Country"
+      },
+
+      {
+        name: "state",
+        label: "State",
+        type: "text",
+        placeholder: "State"
+      },
+
+      {
+        name: "localGovernment",
+        label: "Local Government",
+        type: "text",
+        placeholder: "Local Government"
+      },
+
+      {
+        name: "address",
+        label: "Address",
+        type: "text",
+        placeholder: "Ambulance service address"
+      },
+
+      {
+        name: "phone",
+        label: "Phone",
+        type: "tel",
+        placeholder: "Phone number"
+      },
+
+      {
+        name: "whatsapp",
+        label: "WhatsApp",
+        type: "tel",
+        placeholder: "WhatsApp number"
+      },
+
+      {
+        name: "available24Hours",
+        label: "Available 24 Hours",
+        type: "checkbox"
+      },
+
+      {
+        name: "verified",
+        label: "Verified",
+        type: "checkbox"
+      },
+
+      {
+        name: "active",
+        label: "Active",
+        type: "checkbox",
+        defaultValue: true
+      }
+
+    ]
+
+  },
+
+
+  /* =======================================================
+     MEDICAL SUPPLIES
+  ======================================================= */
+
+  medicalSupplies: {
+
+    title: "Medical Supplies",
+    singular: "Medical Supply",
+    label: "MEDICAL SUPPLY STORE",
+    databasePath: "medicalSupplies",
+
+    fields: [
+
+      {
+        name: "name",
+        label: "Name",
+        type: "text",
+        placeholder: "Supplier / business name"
+      },
+
+      {
+        name: "supplierType",
+        label: "Supplier Type",
+        type: "text",
+        placeholder: "Medical equipment, drugs, etc."
+      },
+
+      {
+        name: "country",
+        label: "Country",
+        type: "text",
+        placeholder: "Country"
+      },
+
+      {
+        name: "state",
+        label: "State",
+        type: "text",
+        placeholder: "State"
+      },
+
+      {
+        name: "localGovernment",
+        label: "Local Government",
+        type: "text",
+        placeholder: "Local Government"
+      },
+
+      {
+        name: "address",
+        label: "Address",
+        type: "text",
+        placeholder: "Medical supplier address"
+      },
+
+      {
+        name: "phone",
+        label: "Phone",
+        type: "tel",
+        placeholder: "Phone number"
+      },
+
+      {
+        name: "whatsapp",
+        label: "WhatsApp",
+        type: "tel",
+        placeholder: "WhatsApp number"
+      },
+
+      {
+        name: "products",
+        label: "Products",
+        type: "textarea",
+        placeholder: "Example: Hospital Beds, Wheelchairs, Drugs",
+        full: true
+      },
+
+      /* ===================================================
+         NEW PRICE TYPE
+      =================================================== */
+
+      {
+        name: "priceType",
+        label: "Price Type",
+        type: "select",
+        options: [
+          {
+            value: "fixed",
+            label: "Fixed Price"
+          },
+          {
+            value: "negotiable",
+            label: "Negotiable"
+          }
+        ]
+      },
+
+      /* ===================================================
+         NEW PRICE
+      =================================================== */
+
+      {
+        name: "price",
+        label: "Price",
+        type: "number",
+        placeholder: "Enter price in Naira"
+      },
+
+      {
+        name: "verified",
+        label: "Verified",
+        type: "checkbox"
+      },
+
+      {
+        name: "active",
+        label: "Active",
+        type: "checkbox",
+        defaultValue: true
+      }
+
+    ]
+
+  }
+
+};
+
+
+/* =========================================================
+   APPLICATION STATE
+========================================================= */
+
+let currentPage = "dashboard";
+
+let currentService = null;
+
+let currentRecordId = null;
+
+let recordBeingDeleted = null;
+
+
+const records = {
+
+  hospitals: {},
+
+  consultants: {},
+
+  homeTreatment: {},
+
+  ambulances: {},
+
+  medicalSupplies: {}
+
+};
+
+
+/* =========================================================
+   DOM HELPERS
+========================================================= */
+
+const $ = (selector) =>
+  document.querySelector(selector);
+
+
+const $$ = (selector) =>
+  Array.from(
+    document.querySelectorAll(selector)
+  );
+
+
+/* =========================================================
+   DOM ELEMENTS
+========================================================= */
+
+const sidebar =
+  $("#sidebar");
+
+const sidebarOpen =
+  $("#sidebarOpen");
+
+const sidebarClose =
+  $("#sidebarClose");
+
+const sidebarOverlay =
+  $("#sidebarOverlay");
+
+const pageTitle =
+  $("#pageTitle");
+
+const recordModal =
+  $("#recordModal");
+
+const modalTitle =
+  $("#modalTitle");
+
+const modalLabel =
+  $("#modalLabel");
+
+const modalClose =
+  $("#modalClose");
+
+const modalCancel =
+  $("#modalCancel");
+
+const recordForm =
+  $("#recordForm");
+
+const formFields =
+  $("#formFields");
+
+const formMessage =
+  $("#formMessage");
+
+const deleteModal =
+  $("#deleteModal");
+
+const deleteCancel =
+  $("#deleteCancel");
+
+const deleteConfirm =
+  $("#deleteConfirm");
+
+const toast =
+  $("#toast");
+
+const toastTitle =
+  $("#toastTitle");
+
+const toastMessage =
+  $("#toastMessage");
+
+const toastIcon =
+  $("#toastIcon");
+
+const connectionStatus =
+  $("#connectionStatus");
+
+const connectionText =
+  $("#connectionText");
+
+const databaseStatusIcon =
+  $("#databaseStatusIcon");
+
+const databaseStatusTitle =
+  $("#databaseStatusTitle");
+
+const databaseStatusMessage =
+  $("#databaseStatusMessage");
+
+
+/* =========================================================
+   SIDEBAR
+   DO NOT REMOVE THIS SECTION
+========================================================= */
+
+function openSidebar() {
+
+  if (!sidebar) return;
+
+  sidebar.classList.add("open");
+
+  if (sidebarOverlay) {
+
+    sidebarOverlay.classList.add(
+      "show"
+    );
+
+  }
+
+}
+
+
+function closeSidebar() {
+
+  if (!sidebar) return;
+
+  sidebar.classList.remove(
+    "open"
+  );
+
+  if (sidebarOverlay) {
+
+    sidebarOverlay.classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
+if (sidebarOpen) {
+
+  sidebarOpen.addEventListener(
+    "click",
+    function(event) {
+
+      event.preventDefault();
+
+      event.stopPropagation();
+
+      openSidebar();
+
+    }
+  );
+
+}
+
+
+if (sidebarClose) {
+
+  sidebarClose.addEventListener(
+    "click",
+    function(event) {
+
+      event.preventDefault();
+
+      event.stopPropagation();
+
+      closeSidebar();
+
+    }
+  );
+
+}
+
+
+if (sidebarOverlay) {
+
+  sidebarOverlay.addEventListener(
+    "click",
+    function() {
+
+      closeSidebar();
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function showPage(pageName) {
+
+  if (
+    pageName !== "dashboard" &&
+    !SERVICE_CONFIG[pageName]
+  ) {
+
+    return;
+
+  }
+
+
+  currentPage =
+    pageName;
+
+
+  $$(".page-section").forEach(
+    (section) => {
+
+      section.classList.remove(
+        "active"
+      );
+
+    }
+  );
+
+
+  const target =
+    $(`#page-${pageName}`);
+
+
+  if (target) {
+
+    target.classList.add(
+      "active"
+    );
+
+  }
+
+
+  $$(".nav-item").forEach(
+    (item) => {
+
+      item.classList.toggle(
+        "active",
+        item.dataset.page === pageName
+      );
+
+    }
+  );
+
+
+  if (pageTitle) {
+
+    pageTitle.textContent =
+      pageName === "dashboard"
+        ? "Dashboard"
+        : SERVICE_CONFIG[pageName].title;
+
+  }
+
+
+  closeSidebar();
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* =========================================================
+   NAVIGATION BUTTONS
+========================================================= */
+
+$$(".nav-item").forEach(
+  (item) => {
+
+    item.addEventListener(
+      "click",
+      function() {
+
+        showPage(
+          item.dataset.page
+        );
+
+      }
+    );
+
+  }
+);
+
+
+$$("[data-page-link]").forEach(
+  (button) => {
+
+    button.addEventListener(
+      "click",
+      function() {
+
+        showPage(
+          button.dataset.pageLink
+        );
+
+      }
+    );
+
+  }
+);
+
+
+$$("[data-page-target]").forEach(
+  (button) => {
+
+    button.addEventListener(
+      "click",
+      function() {
+
+        const page =
+          button.dataset.pageTarget;
+
+        showPage(page);
+
+        setTimeout(
+          function() {
+
+            openRecordModal(page);
+
+          },
+          150
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+  if (
+    value === undefined ||
+    value === null
+  ) {
+
+    return "";
+
+  }
+
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   CREATE FORM FIELD
+========================================================= */
+
+function createField(
+  field,
+  value = undefined
+) {
+
+  const wrapper =
+    document.createElement("div");
+
+
+  wrapper.className =
+    "form-field";
+
+
+  if (field.full) {
+
+    wrapper.classList.add(
+      "full"
+    );
+
+  }
+
+
+  /* =======================================================
+     CHECKBOX
+  ======================================================= */
+
+  if (
+    field.type === "checkbox"
+  ) {
+
+    wrapper.className =
+      "checkbox-field";
+
+
+    const input =
+      document.createElement("input");
+
+
+    input.type =
+      "checkbox";
+
+    input.name =
+      field.name;
+
+    input.id =
+      `field-${field.name}`;
+
+
+    if (
+      value !== undefined
+    ) {
+
+      input.checked =
+        value === true ||
+        value === "true" ||
+        value === 1;
+
+    }
+
+    else if (
+      field.defaultValue !== undefined
+    ) {
+
+      input.checked =
+        field.defaultValue;
+
+    }
+
+
+    const label =
+      document.createElement("label");
+
+
+    label.htmlFor =
+      input.id;
+
+    label.textContent =
+      field.label;
+
+
+    wrapper.appendChild(
+      input
+    );
+
+    wrapper.appendChild(
+      label
+    );
+
+
+    return wrapper;
+
+  }
+
+
+  /* =======================================================
+     LABEL
+  ======================================================= */
+
+  const label =
+    document.createElement("label");
+
+
+  label.htmlFor =
+    `field-${field.name}`;
+
+
+  label.innerHTML =
+    `${escapeHTML(field.label)}
+     <span>(optional)</span>`;
+
+
+  let input;
+
+
+  /* =======================================================
+     TEXTAREA
+  ======================================================= */
+
+  if (
+    field.type === "textarea"
+  ) {
+
+    input =
+      document.createElement(
+        "textarea"
+      );
+
+    input.rows = 4;
+
+
+    if (
+      value !== undefined &&
+      value !== null
+    ) {
+
+      if (
+        Array.isArray(value)
+      ) {
+
+        input.value =
+          value.join(", ");
+
+      } else {
+
+        input.value =
+          value;
+
+      }
+
+    }
+
+  }
+
+
+  /* =======================================================
+     SELECT
+  ======================================================= */
+
+  else if (
+    field.type === "select"
+  ) {
+
+    input =
+      document.createElement(
+        "select"
+      );
+
+
+    const emptyOption =
+      document.createElement(
+        "option"
+      );
+
+    emptyOption.value = "";
+
+    emptyOption.textContent =
+      "Select an option";
+
+    input.appendChild(
+      emptyOption
+    );
+
+
+    (field.options || [])
+      .forEach(
+        (option) => {
+
+          const optionElement =
+            document.createElement(
+              "option"
+            );
+
+          optionElement.value =
+            option.value;
+
+          optionElement.textContent =
+            option.label;
+
+
+          if (
+            value === option.value
+          ) {
+
+            optionElement.selected =
+              true;
+
+          }
+
+
+          input.appendChild(
+            optionElement
+          );
+
+        }
+      );
+
+  }
+
+
+  /* =======================================================
+     NORMAL INPUT
+  ======================================================= */
+
+  else {
+
+    input =
+      document.createElement(
+        "input"
+      );
+
+
+    input.type =
+      field.type || "text";
+
+
+    if (
+      value !== undefined &&
+      value !== null
+    ) {
+
+      input.value =
+        value;
+
+    }
+
+  }
+
+
+  input.id =
+    `field-${field.name}`;
+
+
+  input.name =
+    field.name;
+
+
+  input.placeholder =
+    field.placeholder || "";
+
+
+  input.required =
+    false;
+
+
+  wrapper.appendChild(
+    label
+  );
+
+  wrapper.appendChild(
+    input
+  );
+
+
+  return wrapper;
+
+}
+
+
+/* =========================================================
+   GENERATE FORM
+========================================================= */
+
+function generateForm(
+  serviceName,
+  existingData = {}
+) {
+
+  const config =
+    SERVICE_CONFIG[serviceName];
+
+
+  if (!config) return;
+
+
+  if (!formFields) return;
+
+
+  formFields.innerHTML =
+    "";
+
+
+  const note =
+    document.createElement("div");
+
+
+  note.className =
+    "form-optional-note";
+
+
+  note.textContent =
+    "All fields are optional. Fixed Price or Negotiable can be selected for medical supplies.";
+
+
+  formFields.appendChild(
+    note
+  );
+
+
+  config.fields.forEach(
+    (field) => {
+
+      const value =
+        existingData[field.name];
+
+
+      formFields.appendChild(
+        createField(
+          field,
+          value
+        )
+      );
+
+    }
+  );
+
+
+  /* =======================================================
+     PRICE INTELLIGENCE
+  ======================================================= */
+
+  if (
+    serviceName === "medicalSupplies"
+  ) {
+
+    setupPriceControls();
+
+  }
+
+}
+
+
+/* =========================================================
+   PRICE CONTROL
+========================================================= */
+
+function setupPriceControls() {
+
+  const priceType =
+    $("#field-priceType");
+
+  const price =
+    $("#field-price");
+
+
+  if (
+    !priceType ||
+    !price
+  ) {
+
+    return;
+
+  }
+
+
+  function updatePriceInput() {
+
+    if (
+      priceType.value ===
+      "negotiable"
+    ) {
+
+      price.value =
+        "";
+
+      price.disabled =
+        true;
+
+      price.placeholder =
+        "Price not required — Negotiable";
+
+    }
+
+    else {
+
+      price.disabled =
+        false;
+
+      price.placeholder =
+        "Enter price in Naira";
+
+    }
+
+  }
+
+
+  priceType.addEventListener(
+    "change",
+    updatePriceInput
+  );
+
+
+  updatePriceInput();
+
+}
+
+
+/* =========================================================
+   OPEN ADD / EDIT MODAL
+========================================================= */
+
+function openRecordModal(
+  serviceName,
+  recordId = null
+) {
+
+  const config =
+    SERVICE_CONFIG[serviceName];
+
+
+  if (!config) return;
+
+
+  currentService =
+    serviceName;
+
+  currentRecordId =
+    recordId;
+
+
+  const existingData =
+    recordId &&
+    records[serviceName] &&
+    records[serviceName][recordId]
+      ? records[serviceName][recordId]
+      : {};
+
+
+  if (recordId) {
+
+    if (modalLabel) {
+
+      modalLabel.textContent =
+        "EDIT RECORD";
+
+    }
+
+    if (modalTitle) {
+
+      modalTitle.textContent =
+        `Edit ${config.singular}`;
+
+    }
+
+  }
+
+  else {
+
+    if (modalLabel) {
+
+      modalLabel.textContent =
+        "NEW RECORD";
+
+    }
+
+    if (modalTitle) {
+
+      modalTitle.textContent =
+        `Add ${config.singular}`;
+
+    }
+
+  }
+
+
+  generateForm(
+    serviceName,
+    existingData
+  );
+
+
+  clearFormMessage();
+
+
+  if (!recordModal) return;
+
+
+  recordModal.classList.add(
+    "show"
+  );
+
+
+  recordModal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+
+  setTimeout(
+    function() {
+
+      const firstInput =
+        formFields.querySelector(
+          "input:not([type='checkbox']), textarea, select"
+        );
+
+
+      if (firstInput) {
+
+        firstInput.focus();
+
+      }
+
+    },
+    100
+  );
+
+}
+
+
+/* =========================================================
+   CLOSE RECORD MODAL
+========================================================= */
+
+function closeRecordModal() {
+
+  if (!recordModal) return;
+
+
+  recordModal.classList.remove(
+    "show"
+  );
+
+
+  recordModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  currentService =
+    null;
+
+  currentRecordId =
+    null;
+
+
+  if (recordForm) {
+
+    recordForm.reset();
+
+  }
+
+
+  if (formFields) {
+
+    formFields.innerHTML =
+      "";
+
+  }
+
+
+  clearFormMessage();
+
+}
+
+
+if (modalClose) {
+
+  modalClose.addEventListener(
+    "click",
+    closeRecordModal
+  );
+
+}
+
+
+if (modalCancel) {
+
+  modalCancel.addEventListener(
+    "click",
+    closeRecordModal
+  );
+
+}
+
+
+/* =========================================================
+   MODAL OUTSIDE CLICK
+========================================================= */
+
+if (recordModal) {
+
+  recordModal.addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target ===
+        recordModal
+      ) {
+
+        closeRecordModal();
+
+      }
+
+    }
+  );
+
+}
+
+
+if (deleteModal) {
+
+  deleteModal.addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target ===
+        deleteModal
+      ) {
+
+        closeDeleteModal();
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+========================================================= */
+
+function showFormMessage(
+  message,
+  type = "info"
+) {
+
+  if (!formMessage) return;
+
+
+  formMessage.textContent =
+    message;
+
+
+  formMessage.className =
+    `form-message show ${type}`;
+
+}
+
+
+function clearFormMessage() {
+
+  if (!formMessage) return;
+
+
+  formMessage.textContent =
+    "";
+
+
+  formMessage.className =
+    "form-message";
+
+}
+
+
+/* =========================================================
+   GET FORM DATA
+========================================================= */
+
+function getFormData(
+  serviceName
+) {
+
+  const config =
+    SERVICE_CONFIG[serviceName];
+
+
+  const data = {};
+
+
+  config.fields.forEach(
+    (field) => {
+
+      const element =
+        recordForm.elements[
+          field.name
+        ];
+
+
+      if (!element) {
+
+        return;
+
+      }
+
+
+      /* ===================================================
+         CHECKBOX
+      =================================================== */
+
+      if (
+        field.type ===
+        "checkbox"
+      ) {
+
+        data[field.name] =
+          element.checked;
+
+        return;
+
+      }
+
+
+      /* ===================================================
+         ARRAYS
+      =================================================== */
+
+      if (
+        field.name === "services" ||
+        field.name === "products"
+      ) {
+
+        const value =
+          element.value.trim();
+
+
+        data[field.name] =
+          value
+            ? value
+                .split(",")
+                .map(
+                  item =>
+                    item.trim()
+                )
+                .filter(Boolean)
+            : [];
+
+
+        return;
+
+      }
+
+
+      /* ===================================================
+         PRICE
+      =================================================== */
+
+      if (
+        field.name === "price"
+      ) {
+
+        if (
+          element.value === ""
+        ) {
+
+          data.price =
+            "";
+
+        }
+
+        else {
+
+          data.price =
+            Number(
+              element.value
+            );
+
+        }
+
+
+        return;
+
+      }
+
+
+      /* ===================================================
+         NORMAL FIELD
+      =================================================== */
+
+      data[field.name] =
+        element.value.trim();
+
+    }
+  );
+
+
+  /* =======================================================
+     PRICE SAFETY
+  ======================================================= */
+
+  if (
+    serviceName ===
+    "medicalSupplies"
+  ) {
+
+    if (
+      data.priceType ===
+      "negotiable"
+    ) {
+
+      data.price =
+        "";
+
+    }
+
+    /*
+      If no price type was selected,
+      default to negotiable.
+    */
+
+    if (
+      !data.priceType
+    ) {
+
+      data.priceType =
+        "negotiable";
+
+      data.price =
+        "";
+
+    }
+
+  }
+
+
+  return data;
+
+}
+
+
+/* =========================================================
+   TIMESTAMPS
+========================================================= */
+
+function addCreateData(data) {
+
+  const now =
+    new Date().toISOString();
+
+
+  data.createdAt =
+    now;
+
+  data.updatedAt =
+    now;
+
+
+  return data;
+
+}
+
+
+function addUpdateData(data) {
+
+  data.updatedAt =
+    new Date().toISOString();
+
+
+  return data;
+
+}
+
+
+/* =========================================================
+   SAVE RECORD
+========================================================= */
+
+if (recordForm) {
+
+  recordForm.addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+
+      if (!currentService) {
+
+        showFormMessage(
+          "No service section selected.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (!database) {
+
+        showFormMessage(
+          "Firebase is not connected. Check your Firebase configuration.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const saveButton =
+        $("#saveRecordButton");
+
+
+      if (saveButton) {
+
+        saveButton.disabled =
+          true;
+
+        saveButton.textContent =
+          "Saving...";
+
+      }
+
+
+      try {
+
+        let data =
+          getFormData(
+            currentService
+          );
+
+
+        /* ===============================================
+           CREATE
+        =============================================== */
+
+        if (!currentRecordId) {
+
+          data =
+            addCreateData(
+              data
+            );
+
+
+          const collectionRef =
+            ref(
+              database,
+              SERVICE_CONFIG[
+                currentService
+              ].databasePath
+            );
+
+
+          const newRecordRef =
+            push(
+              collectionRef
+            );
+
+
+          await set(
+            newRecordRef,
+            data
+          );
+
+
+          showToast(
+            "Success",
+            `${SERVICE_CONFIG[currentService].singular} saved successfully.`,
+            "success"
+          );
+
+        }
+
+
+        /* ===============================================
+           UPDATE
+        =============================================== */
+
+        else {
+
+          data =
+            addUpdateData(
+              data
+            );
+
+
+          const recordRef =
+            ref(
+              database,
+              `${SERVICE_CONFIG[currentService].databasePath}/${currentRecordId}`
+            );
+
+
+          await update(
+            recordRef,
+            data
+          );
+
+
+          showToast(
+            "Updated",
+            `${SERVICE_CONFIG[currentService].singular} updated successfully.`,
+            "success"
+          );
+
+        }
+
+
+        closeRecordModal();
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Save error:",
+          error
+        );
+
+
+        showFormMessage(
+          getFirebaseErrorMessage(
+            error
+          ),
+          "error"
+        );
+
+      }
+
+      finally {
+
+        if (saveButton) {
+
+          saveButton.disabled =
+            false;
+
+          saveButton.textContent =
+            "Save Record";
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ADD BUTTONS
+========================================================= */
+
+$$("[data-add-button]").forEach(
+  (button) => {
+
+    button.addEventListener(
+      "click",
+      function() {
+
+        openRecordModal(
+          button.dataset.addButton
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   FIREBASE ERROR
+========================================================= */
+
+function getFirebaseErrorMessage(
+  error
+) {
+
+  if (!error) {
+
+    return "Something went wrong.";
+
+  }
+
+
+  if (
+    error.code ===
+    "PERMISSION_DENIED"
+  ) {
+
+    return "Firebase permission denied. Check your Realtime Database rules.";
+
+  }
+
+
+  if (
+    error.code ===
+    "NETWORK_ERROR"
+  ) {
+
+    return "Network error. Check your internet connection.";
+
+  }
+
+
+  return (
+    error.message ||
+    "Unable to save the record."
+  );
+
+}
+
+
+/* =========================================================
+   DELETE MODAL
+========================================================= */
+
+function openDeleteModal(
+  serviceName,
+  recordId
+) {
+
+  recordBeingDeleted = {
+
+    serviceName,
+
+    recordId
+
+  };
+
+
+  if (!deleteModal) return;
+
+
+  deleteModal.classList.add(
+    "show"
+  );
+
+
+  deleteModal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+}
+
+
+function closeDeleteModal() {
+
+  if (!deleteModal) return;
+
+
+  deleteModal.classList.remove(
+    "show"
+  );
+
+
+  deleteModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  recordBeingDeleted =
+    null;
+
+}
+
+
+if (deleteCancel) {
+
+  deleteCancel.addEventListener(
+    "click",
+    closeDeleteModal
+  );
+
+}
+
+
+/* =========================================================
+   CONFIRM DELETE
+========================================================= */
+
+if (deleteConfirm) {
+
+  deleteConfirm.addEventListener(
+    "click",
+    async function() {
+
+      if (
+        !recordBeingDeleted
+      ) {
+
+        return;
+
+      }
+
+
+      if (!database) {
+
+        showToast(
+          "Error",
+          "Firebase is not connected.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const {
+        serviceName,
+        recordId
+      } =
+        recordBeingDeleted;
+
+
+      deleteConfirm.disabled =
+        true;
+
+      deleteConfirm.textContent =
+        "Deleting...";
+
+
+      try {
+
+        const recordRef =
+          ref(
+            database,
+            `${SERVICE_CONFIG[serviceName].databasePath}/${recordId}`
+          );
+
+
+        await remove(
+          recordRef
+        );
+
+
+        showToast(
+          "Deleted",
+          `${SERVICE_CONFIG[serviceName].singular} deleted successfully.`,
+          "success"
+        );
+
+
+        closeDeleteModal();
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Delete error:",
+          error
+        );
+
+
+        showToast(
+          "Error",
+          getFirebaseErrorMessage(
+            error
+          ),
+          "error"
+        );
+
+      }
+
+      finally {
+
+        deleteConfirm.disabled =
+          false;
+
+        deleteConfirm.textContent =
+          "Delete";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderTable(
+  serviceName
+) {
+
+  const data =
+    records[serviceName] || {};
+
+
+  const config =
+    SERVICE_CONFIG[serviceName];
+
+
+  const tableBody =
+    getTableBody(
+      serviceName
+    );
+
+
+  const totalElement =
+    getTotalElement(
+      serviceName
+    );
+
+
+  if (!tableBody) {
+
+    return;
+
+  }
+
+
+  const entries =
+    Object.entries(
+      data
+    );
+
+
+  if (totalElement) {
+
+    totalElement.textContent =
+      `${entries.length} record${entries.length === 1 ? "" : "s"}`;
+
+  }
+
+
+  if (
+    entries.length === 0
+  ) {
+
+    tableBody.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="6"
+          class="empty-table"
+        >
+
+          <div class="empty-table-icon">
+            ${getServiceIcon(serviceName)}
+          </div>
+
+          <strong>
+            No ${escapeHTML(config.title.toLowerCase())} found
+          </strong>
+
+          <span>
+            Add your first record using the button above.
+          </span>
+
+        </td>
+
+      </tr>
+
+    `;
+
+
+    return;
+
+  }
+
+
+  tableBody.innerHTML =
+    "";
+
+
+  entries.forEach(
+    ([id, item]) => {
+
+      tableBody.appendChild(
+        createTableRow(
+          serviceName,
+          id,
+          item
+        )
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+function getTableBody(
+  serviceName
+) {
+
+  const map = {
+
+    hospitals:
+      "#hospitalTableBody",
+
+    consultants:
+      "#consultantTableBody",
+
+    homeTreatment:
+      "#homeTreatmentTableBody",
+
+    ambulances:
+      "#ambulanceTableBody",
+
+    medicalSupplies:
+      "#medicalSupplyTableBody"
+
+  };
+
+
+  return $(
+    map[serviceName]
+  );
+
+}
+
+
+/* =========================================================
+   TOTAL ELEMENT
+========================================================= */
+
+function getTotalElement(
+  serviceName
+) {
+
+  const map = {
+
+    hospitals:
+      "#hospitalTotal",
+
+    consultants:
+      "#consultantTotal",
+
+    homeTreatment:
+      "#homeTreatmentTotal",
+
+    ambulances:
+      "#ambulanceTotal",
+
+    medicalSupplies:
+      "#medicalSupplyTotal"
+
+  };
+
+
+  return $(
+    map[serviceName]
+  );
+
+}
+
+
+/* =========================================================
+   TABLE ROW
+========================================================= */
+
+function createTableRow(
+  serviceName,
+  id,
+  item
+) {
+
+  const row =
+    document.createElement(
+      "tr"
+    );
+
+
+  let cells = [];
+
+
+  /* =======================================================
+     HOSPITALS
+  ======================================================= */
+
+  if (
+    serviceName ===
+    "hospitals"
+  ) {
+
+    cells = [
+
+      displayValue(
+        item.name
+      ),
+
+      displayLocation(
+        item
+      ),
+
+      displayValue(
+        item.phone
+      ),
+
+      displayArray(
+        item.services
+      ),
+
+      createStatus(
+        item.active
+      ),
+
+      createActions(
+        serviceName,
+        id
+      )
+
+    ];
+
+  }
+
+
+  /* =======================================================
+     CONSULTANTS
+  ======================================================= */
+
+  else if (
+    serviceName ===
+    "consultants"
+  ) {
+
+    cells = [
+
+      displayValue(
+        item.name
+      ),
+
+      displayValue(
+        item.specialization
+      ),
+
+      displayLocation(
+        item
+      ),
+
+      displayValue(
+        item.phone
+      ),
+
+      createStatus(
+        item.active
+      ),
+
+      createActions(
+        serviceName,
+        id
+      )
+
+    ];
+
+  }
+
+
+  /* =======================================================
+     HOME TREATMENT
+  ======================================================= */
+
+  else if (
+    serviceName ===
+    "homeTreatment"
+  ) {
+
+    cells = [
+
+      displayValue(
+        item.name
+      ),
+
+      displayValue(
+        item.providerType
+      ),
+
+      displayLocation(
+        item
+      ),
+
+      displayArray(
+        item.services
+      ),
+
+      createStatus(
+        item.active
+      ),
+
+      createActions(
+        serviceName,
+        id
+      )
+
+    ];
+
+  }
+
+
+  /* =======================================================
+     AMBULANCES
+  ======================================================= */
+
+  else if (
+    serviceName ===
+    "ambulances"
+  ) {
+
+    cells = [
+
+      displayValue(
+        item.name
+      ),
+
+      displayValue(
+        item.serviceType
+      ),
+
+      displayLocation(
+        item
+      ),
+
+      item.available24Hours
+        ? "Yes"
+        : "No",
+
+      createStatus(
+        item.active
+      ),
+
+      createActions(
+        serviceName,
+        id
+      )
+
+    ];
+
+  }
+
+
+  /* =======================================================
+     MEDICAL SUPPLIES
+  ======================================================= */
+
+  else if (
+    serviceName ===
+    "medicalSupplies"
+  ) {
+
+    cells = [
+
+      displayValue(
+        item.name
+      ),
+
+      displayValue(
+        item.supplierType
+      ),
+
+      displayLocation(
+        item
+      ),
+
+      displayArray(
+        item.products
+      ),
+
+      displayPrice(
+        item
+      ),
+
+      createStatus(
+        item.active
+      ),
+
+      createActions(
+        serviceName,
+        id
+      )
+
+    ];
+
+  }
+
+
+  cells.forEach(
+    (cell) => {
+
+      const td =
+        document.createElement(
+          "td"
+        );
+
+
+      if (
+        cell instanceof Node
+      ) {
+
+        td.appendChild(
+          cell
+        );
+
+      }
+
+      else {
+
+        td.innerHTML =
+          cell;
+
+      }
+
+
+      row.appendChild(
+        td
+      );
+
+    }
+  );
+
+
+  return row;
+
+}
+
+
+/* =========================================================
+   DISPLAY VALUE
+========================================================= */
+
+function displayValue(
+  value
+) {
+
+  if (
+    value === undefined ||
+    value === null ||
+    value === ""
+  ) {
+
+    return `
+      <span style="color:#a4b0ad">
+        —
+      </span>
+    `;
+
+  }
+
+
+  return escapeHTML(
+    value
+  );
+
+}
+
+
+/* =========================================================
+   DISPLAY ARRAY
+========================================================= */
+
+function displayArray(
+  value
+) {
+
+  if (
+    !Array.isArray(value) ||
+    value.length === 0
+  ) {
+
+    return `
+      <span style="color:#a4b0ad">
+        —
+      </span>
+    `;
+
+  }
+
+
+  return escapeHTML(
+    value.join(", ")
+  );
+
+}
+
+
+/* =========================================================
+   DISPLAY PRICE
+========================================================= */
+
+function displayPrice(
+  item
+) {
+
+  const priceType =
+    String(
+      item.priceType || ""
+    ).toLowerCase();
+
+
+  /* Negotiable */
+
+  if (
+    priceType ===
+    "negotiable"
+  ) {
+
+    return `
+      <span class="price-negotiable">
+        Negotiable
+      </span>
+    `;
+
+  }
+
+
+  /* Fixed price */
+
+  if (
+    item.price !== undefined &&
+    item.price !== null &&
+    item.price !== ""
+  ) {
+
+    const numericPrice =
+      Number(
+        item.price
+      );
+
+
+    if (
+      Number.isFinite(
+        numericPrice
+      )
+    ) {
+
+      return `
+        <span class="price-fixed">
+          ₦${numericPrice.toLocaleString("en-NG")}
+        </span>
+      `;
+
+    }
+
+  }
+
+
+  /* Old records without price */
+
+  return `
+    <span style="color:#a4b0ad">
+      —
+    </span>
+  `;
+
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+function displayLocation(
+  item
+) {
+
+  const parts = [
+
+    item.address,
+
+    item.localGovernment,
+
+    item.state
+
+  ].filter(
+    (value) =>
+
+      value !== undefined &&
+      value !== null &&
+      String(value).trim() !== ""
+
+  );
+
+
+  if (
+    parts.length === 0
+  ) {
+
+    return `
+      <span style="color:#a4b0ad">
+        —
+      </span>
+    `;
+
+  }
+
+
+  return escapeHTML(
+    parts.join(", ")
+  );
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function createStatus(
+  active
+) {
+
+  const isActive =
+    active === true ||
+    active === "true" ||
+    active === 1;
+
+
+  const span =
+    document.createElement(
+      "span"
+    );
+
+
+  span.className =
+    `table-status ${
+      isActive
+        ? "active"
+        : "inactive"
+    }`;
+
+
+  span.innerHTML = `
+
+    <span class="table-status-dot"></span>
+
+    ${isActive ? "Active" : "Inactive"}
+
+  `;
+
+
+  return span;
+
+}
+
+
+/* =========================================================
+   TABLE ACTIONS
+========================================================= */
+
+function createActions(
+  serviceName,
+  id
+) {
+
+  const container =
+    document.createElement(
+      "div"
+    );
+
+
+  container.className =
+    "table-actions";
+
+
+  const editButton =
+    document.createElement(
+      "button"
+    );
+
+
+  editButton.type =
+    "button";
+
+  editButton.className =
+    "table-action";
+
+  editButton.textContent =
+    "Edit";
+
+
+  editButton.addEventListener(
+    "click",
+    function() {
+
+      openRecordModal(
+        serviceName,
+        id
+      );
+
+    }
+  );
+
+
+  const deleteButton =
+    document.createElement(
+      "button"
+    );
+
+
+  deleteButton.type =
+    "button";
+
+  deleteButton.className =
+    "table-action delete";
+
+  deleteButton.textContent =
+    "Delete";
+
+
+  deleteButton.addEventListener(
+    "click",
+    function() {
+
+      openDeleteModal(
+        serviceName,
+        id
+      );
+
+    }
+  );
+
+
+  container.appendChild(
+    editButton
+  );
+
+  container.appendChild(
+    deleteButton
+  );
+
+
+  return container;
+
+}
+
+
+/* =========================================================
+   SERVICE ICONS
+========================================================= */
+
+function getServiceIcon(
+  serviceName
+) {
+
+  const icons = {
+
+    hospitals:
+      "🏥",
+
+    consultants:
+      "👨‍⚕️",
+
+    homeTreatment:
+      "🏠",
+
+    ambulances:
+      "🚑",
+
+    medicalSupplies:
+      "🩺"
+
+  };
+
+
+  return (
+    icons[serviceName] ||
+    "＋"
+  );
+
+}
+
+
+/* =========================================================
+   FIREBASE LISTENER
+========================================================= */
+
+function listenToService(
+  serviceName
+) {
+
+  if (!database) {
+
+    return;
+
+  }
+
+
+  const path =
+    SERVICE_CONFIG[
+      serviceName
+    ].databasePath;
+
+
+  const databaseRef =
+    ref(
+      database,
+      path
+    );
+
+
+  onValue(
+    databaseRef,
+    function(snapshot) {
+
+      records[
+        serviceName
+      ] =
+        snapshot.val() || {};
+
+
+      renderTable(
+        serviceName
+      );
+
+
+      updateDashboardCounts();
+
+    },
+
+    function(error) {
+
+      console.error(
+        `Firebase listener error for ${serviceName}:`,
+        error
+      );
+
+
+      setConnectionState(
+        "offline",
+        "Database unavailable"
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   START DATABASE LISTENERS
+========================================================= */
+
+function startDatabaseListeners() {
+
+  if (!database) {
+
+    setConnectionState(
+      "error",
+      "Firebase configuration required"
+    );
+
+
+    updateDatabaseStatus(
+      false,
+      "Firebase not configured",
+      "Check your Firebase configuration."
+    );
+
+
+    return;
+
+  }
+
+
+  Object.keys(
+    SERVICE_CONFIG
+  ).forEach(
+    function(serviceName) {
+
+      listenToService(
+        serviceName
+      );
+
+    }
+  );
+
+
+  listenForConnection();
+
+}
+
+
+/* =========================================================
+   FIREBASE CONNECTION
+========================================================= */
+
+function listenForConnection() {
+
+  const connectedRef =
+    ref(
+      database,
+      ".info/connected"
+    );
+
+
+  onValue(
+    connectedRef,
+    function(snapshot) {
+
+      const connected =
+        snapshot.val() === true;
+
+
+      if (connected) {
+
+        setConnectionState(
+          "connected",
+          "Connected"
+        );
+
+
+        updateDatabaseStatus(
+          true,
+          "Database connected",
+          "Firebase Realtime Database is online."
+        );
+
+      }
+
+      else {
+
+        setConnectionState(
+          "offline",
+          "Offline"
+        );
+
+
+        updateDatabaseStatus(
+          false,
+          "Database offline",
+          "Waiting for the Firebase connection."
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CONNECTION STATE
+========================================================= */
+
+function setConnectionState(
+  state,
+  message
+) {
+
+  if (
+    !connectionStatus
+  ) {
+
+    return;
+
+  }
+
+
+  connectionStatus.className =
+    `connection-status ${state}`;
+
+
+  if (
+    connectionText
+  ) {
+
+    connectionText.textContent =
+      message;
+
+  }
+
+}
+
+
+/* =========================================================
+   DATABASE STATUS
+========================================================= */
+
+function updateDatabaseStatus(
+  connected,
+  title,
+  message
+) {
+
+  if (
+    !databaseStatusTitle
+  ) {
+
+    return;
+
+  }
+
+
+  databaseStatusTitle.textContent =
+    title;
+
+
+  if (
+    databaseStatusMessage
+  ) {
+
+    databaseStatusMessage.textContent =
+      message;
+
+  }
+
+
+  if (
+    databaseStatusIcon
+  ) {
+
+    databaseStatusIcon.textContent =
+      connected
+        ? "✓"
+        : "●";
+
+  }
+
+}
+
+
+/* =========================================================
+   DASHBOARD COUNTS
+========================================================= */
+
+function updateDashboardCounts() {
+
+  setCount(
+    "#hospitalCount",
+    Object.keys(
+      records.hospitals || {}
+    ).length
+  );
+
+
+  setCount(
+    "#consultantCount",
+    Object.keys(
+      records.consultants || {}
+    ).length
+  );
+
+
+  setCount(
+    "#homeTreatmentCount",
+    Object.keys(
+      records.homeTreatment || {}
+    ).length
+  );
+
+
+  setCount(
+    "#ambulanceCount",
+    Object.keys(
+      records.ambulances || {}
+    ).length
+  );
+
+
+  setCount(
+    "#medicalSupplyCount",
+    Object.keys(
+      records.medicalSupplies || {}
+    ).length
+  );
+
+}
+
+
+function setCount(
+  selector,
+  value
+) {
+
+  const element =
+    $(selector);
+
+
+  if (element) {
+
+    element.textContent =
+      value;
+
+  }
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function setupSearch(
+  serviceName,
+  inputSelector
+) {
+
+  const input =
+    $(inputSelector);
+
+
+  if (!input) {
+
+    return;
+
+  }
+
+
+  input.addEventListener(
+    "input",
+    function() {
+
+      const searchTerm =
+        input.value
+          .trim()
+          .toLowerCase();
+
+
+      filterTable(
+        serviceName,
+        searchTerm
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   FILTER TABLE
+========================================================= */
+
+function filterTable(
+  serviceName,
+  searchTerm
+) {
+
+  const tableBody =
+    getTableBody(
+      serviceName
+    );
+
+
+  if (!tableBody) {
+
+    return;
+
+  }
+
+
+  if (!searchTerm) {
+
+    renderTable(
+      serviceName
+    );
+
+    return;
+
+  }
+
+
+  const data =
+    records[
+      serviceName
+    ] || {};
+
+
+  const matchingEntries =
+    Object.entries(
+      data
+    ).filter(
+      ([, item]) => {
+
+        return JSON.stringify(
+          item
+        )
+          .toLowerCase()
+          .includes(
+            searchTerm
+          );
+
+      }
+    );
+
+
+  if (
+    matchingEntries.length ===
+    0
+  ) {
+
+    tableBody.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="7"
+          class="empty-table"
+        >
+
+          <div class="empty-table-icon">
+            ⌕
+          </div>
+
+          <strong>
+            No matching records
+          </strong>
+
+          <span>
+            Try another search term.
+          </span>
+
+        </td>
+
+      </tr>
+
+    `;
+
+
+    return;
+
+  }
+
+
+  tableBody.innerHTML =
+    "";
+
+
+  matchingEntries.forEach(
+    ([id, item]) => {
+
+      tableBody.appendChild(
+        createTableRow(
+          serviceName,
+          id,
+          item
+        )
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   SEARCH INITIALIZATION
+========================================================= */
+
+setupSearch(
+  "hospitals",
+  "#hospitalSearch"
+);
+
+setupSearch(
+  "consultants",
+  "#consultantSearch"
+);
+
+setupSearch(
+  "homeTreatment",
+  "#homeTreatmentSearch"
+);
+
+setupSearch(
+  "ambulances",
+  "#ambulanceSearch"
+);
+
+setupSearch(
+  "medicalSupplies",
+  "#medicalSupplySearch"
+);
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer =
+  null;
+
+
+function showToast(
+  title,
+  message,
+  type = "success"
+) {
+
+  if (!toast) {
+
+    return;
+
+  }
+
+
+  if (toastTitle) {
+
+    toastTitle.textContent =
+      title;
+
+  }
+
+
+  if (toastMessage) {
+
+    toastMessage.textContent =
+      message;
+
+  }
+
+
+  if (toastIcon) {
+
+    toastIcon.textContent =
+      type === "error"
+        ? "!"
+        : "✓";
+
+  }
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+      function() {
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      3500
+    );
+
+}
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key !==
+      "Escape"
+    ) {
+
+      return;
+
+    }
+
+
+    if (
+      recordModal &&
+      recordModal.classList.contains(
+        "show"
+      )
+    ) {
+
+      closeRecordModal();
+
+    }
+
+
+    if (
+      deleteModal &&
+      deleteModal.classList.contains(
+        "show"
+      )
+    ) {
+
+      closeDeleteModal();
+
+    }
+
+
+    if (
+      sidebar &&
+      sidebar.classList.contains(
+        "open"
+      )
+    ) {
+
+      closeSidebar();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initializeDashboard() {
+
+  showPage(
+    "dashboard"
+  );
+
+
+  Object.keys(
+    SERVICE_CONFIG
+  ).forEach(
+    function(serviceName) {
+
+      renderTable(
+        serviceName
+      );
+
+    }
+  );
+
+
+  updateDashboardCounts();
+
+
+  startDatabaseListeners();
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+initializeDashboard();
+
+
+/* =========================================================
+   END
+========================================================= */
+
+</script>
+
+What this version changes
+
+The important new part is inside Medical Supplies:
+
+- "priceType" → Fixed Price / Negotiable
+- "price" → actual amount when fixed
+- Selecting Negotiable automatically disables the price field.
+- Selecting Fixed Price enables the price field.
+- Existing medical-supply records without price information will not break.
+- Your Firebase path remains "medicalSupplies".
+- Your existing "products" array remains intact.
+- The sidebar uses the same ".open" / ".show" classes and event structure from your original working code.
+- The store can later read product names such as Hospital Beds, Drugs, Wheelchairs, etc. and automatically determine the appropriate icon.
+
+One important point: because this adds a new Price column to the Medical Supplies table, your existing admin HTML table should have a matching "<th>" for Price. The JavaScript itself will still save the data even before that header is added, but the table columns should eventually be aligned.
+
+</body>
+</html>
