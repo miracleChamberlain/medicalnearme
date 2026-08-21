@@ -3507,25 +3507,6 @@ Medical Near Me — Complete Admin JavaScript
 
 <script type="module">
 
-/* =========================================================
-   MEDICAL NEAR ME — ADMIN DASHBOARD
-   COMPLETE JAVASCRIPT
-
-   IMPORTANT:
-   - Sidebar logic preserved
-   - Firebase structure preserved
-   - All existing services preserved
-   - Medical Supplies now supports:
-       1. Fixed Price
-       2. Negotiable
-   - Products remain stored as an array
-   - No changes to sidebar HTML required
-========================================================= */
-
-
-/* =========================================================
-   FIREBASE IMPORTS
-========================================================= */
 
 import {
   initializeApp
@@ -7258,21 +7239,6 @@ initializeDashboard();
 
 </script>
 
-What this version changes
-
-The important new part is inside Medical Supplies:
-
-- "priceType" → Fixed Price / Negotiable
-- "price" → actual amount when fixed
-- Selecting Negotiable automatically disables the price field.
-- Selecting Fixed Price enables the price field.
-- Existing medical-supply records without price information will not break.
-- Your Firebase path remains "medicalSupplies".
-- Your existing "products" array remains intact.
-- The sidebar uses the same ".open" / ".show" classes and event structure from your original working code.
-- The store can later read product names such as Hospital Beds, Drugs, Wheelchairs, etc. and automatically determine the appropriate icon.
-
-One important point: because this adds a new Price column to the Medical Supplies table, your existing admin HTML table should have a matching "<th>" for Price. The JavaScript itself will still save the data even before that header is added, but the table columns should eventually be aligned.
 
 </body>
 </html>
